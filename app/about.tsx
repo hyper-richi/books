@@ -3,17 +3,20 @@ import { View, Text, StyleSheet } from 'react-native'
 
 import { Colors } from "../constants/Colors"
 import { useColorScheme } from "react-native"
+import ThemedView from '../components/ThemedView'
+import ThemedText from '../components/ThemedText'
+import React from 'react'
 
 const About = () => {
   const colorScheme = useColorScheme() ?? 'light'
   const theme = Colors[colorScheme] ?? Colors.light
 
   return (
-    <View style={[styles.container, {backgroundColor: theme.background}]}>
-      <Text style={[styles.title, {color: theme.title}]}>About Page</Text>
+    <ThemedView style={[styles.container, {backgroundColor: theme.background}]}>
+      <ThemedText style={[styles.title, {color: theme.title}]}>About Page</ThemedText>
 
       <Link href="/" style={[styles.link, {color: theme.text}]}>Home Page</Link>
-    </View>
+    </ThemedView>
   )
 }
 
