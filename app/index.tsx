@@ -5,6 +5,7 @@ import ThemedLogo from "../components/ThemedLogo";
 import Spacer from "../components/Spacer";
 import ThemedText from "../components/ThemedText";
 
+
 const Home = () => {
     return (
         <ThemedView style={styles.container}>
