@@ -1,8 +1,8 @@
 {
   "expo": {
-    "scheme": "my-app",
-    "name": "my-app",
-    "slug": "my-app",
+    "scheme": "books",
+    "name": "books",
+    "slug": "books",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
