@@ -11,90 +11,91 @@ import ThemedTextInput from "../../components/ThemedTextInput";
 import { useUser } from "../../hooks/useUser";
 
 const Login = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState(null);
+  const [email, setEmail] = useState("");
+  console.log("email: ", email);
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
 
-    const { user, login } = useUser();
+  const { user, login } = useUser();
 
-    const handleSubmit = async () => {
-        setError(null);
+  const handleSubmit = async () => {
+    setError(null);
 
-        try {
-            await login(email, password);
-        } catch (error: any) {
-            setError(error.message);
-        }
-    };
+    try {
+      await login(email, password);
+    } catch (error: any) {
+      setError(error.message);
+    }
+  };
 
-    return (
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <ThemedView style={styles.container}>
-                <Spacer />
-                <ThemedText title={true} style={styles.title}>
-                    Login to Your Account
-                </ThemedText>
+  return (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <ThemedView style={styles.container}>
+        <Spacer />
+        <ThemedText title={true} style={styles.title}>
+          Login to Your Account
+        </ThemedText>
 
-                <Spacer />
-                <ThemedTextInput
-                    style={{ width: "80%", marginBottom: 20 }}
-                    placeholder="email"
-                    value={email}
-                    onChangeText={setEmail}
-                    keyboardType="email-address"
-                />
-                <ThemedTextInput
-                    style={{ width: "80%", marginBottom: 20 }}
-                    placeholder="password"
-                    value={password}
-                    onChangeText={setPassword}
-                    secureTextEntry
-                />
+        <Spacer />
+        <ThemedTextInput
+          style={{ width: "80%", marginBottom: 20 }}
+          placeholder="email"
+          value={email}
+          onChangeText={setEmail}
+          keyboardType="email-address"
+        />
+        <ThemedTextInput
+          style={{ width: "80%", marginBottom: 20 }}
+          placeholder="password"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry
+        />
 
-                <ThemedButton onPress={handleSubmit}>
-                    <Text style={{ color: "#f2f2f2" }}>Login</Text>
-                </ThemedButton>
+        <ThemedButton onPress={handleSubmit}>
+          <Text style={{ color: "#f2f2f2" }}>Login</Text>
+        </ThemedButton>
 
-                <Spacer />
-                {error && <Text style={styles.error}>{error}</Text>}
+        <Spacer />
+        {error && <Text style={styles.error}>{error}</Text>}
 
-                <Spacer height={100} />
-                <Link href="/register" replace>
-                    <ThemedText style={{ textAlign: "center" }}>Register instead</ThemedText>
-                </Link>
-            </ThemedView>
-        </TouchableWithoutFeedback>
-    );
+        <Spacer height={100} />
+        <Link href="/register" replace>
+          <ThemedText style={{ textAlign: "center" }}>Register instead</ThemedText>
+        </Link>
+      </ThemedView>
+    </TouchableWithoutFeedback>
+  );
 };
 
 export default Login;
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    title: {
-        textAlign: "center",
-        fontSize: 18,
-        marginBottom: 30,
-    },
-    btn: {
-        backgroundColor: Colors.primary,
-        padding: 15,
-        borderRadius: 5,
-    },
-    pressed: {
-        opacity: 0.8,
-    },
-    error: {
-        color: Colors.warning,
-        padding: 10,
-        backgroundColor: "#f5c1c8",
-        borderColor: Colors.warning,
-        borderWidth: 1,
-        borderRadius: 6,
-        marginHorizontal: 10,
-    },
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  title: {
+    textAlign: "center",
+    fontSize: 18,
+    marginBottom: 30,
+  },
+  btn: {
+    backgroundColor: Colors.primary,
+    padding: 15,
+    borderRadius: 5,
+  },
+  pressed: {
+    opacity: 0.8,
+  },
+  error: {
+    color: Colors.warning,
+    padding: 10,
+    backgroundColor: "#f5c1c8",
+    borderColor: Colors.warning,
+    borderWidth: 1,
+    borderRadius: 6,
+    marginHorizontal: 10,
+  },
 });
