@@ -3,7 +3,7 @@ import { Colors } from "../constants/Colors";
 import { useColorScheme } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { UserProvider } from "../contexts/UserContext";
-import GuestOnly from "../components/auth/GuestOnly";
+import { BooksProvider } from "../contexts/BooksContext";
 
 export default function RootLayout() {
   const colorScheme = useColorScheme() ?? "light";
@@ -11,7 +11,7 @@ export default function RootLayout() {
 
   return (
     <UserProvider>
-      <GuestOnly>
+      <BooksProvider>
         <StatusBar />
         <Stack
           screenOptions={{
@@ -23,7 +23,7 @@ export default function RootLayout() {
           <Stack.Screen name="(auth)" options={{ headerShown: false }} />
           <Stack.Screen name="(dashboard)" options={{ headerShown: false, animation: "none" }} />
         </Stack>
-      </GuestOnly>
+      </BooksProvider>
     </UserProvider>
   );
 }

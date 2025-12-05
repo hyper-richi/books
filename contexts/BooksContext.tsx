@@ -1,21 +1,24 @@
 import { createContext, ReactNode, useState } from "react";
+import { useUser } from "../hooks/useUser";
+import { databases } from "../lib/appwrite";
+import { ID, Permission, Role } from "react-native-appwrite";
 
 const DATABASE_ID = "69315e8600321f3cd3a3";
-const COLLECTION_ID = "books";
+const COLLECTION_ID = "1234567";
 
 interface BooksContextType {
-  createBook: (data: []) => Promise<void>;
-  fetchBookById: (id: string) => Promise<void>;
+  createBook: (data: any) => Promise<void>;
+  fetchBookById: (id: string) => Promise<"response" | undefined>;
   deleteBook: (id: string) => Promise<void>;
   fetchBooks: () => Promise<void>;
-  authChecked: boolean;
-  books:[];
+  books: any;
 }
 
 export const BooksContext = createContext<BooksContextType | null>(null);
 
 export function BooksProvider({ children }: { children: ReactNode }) {
   const [books, setBooks] = useState([]);
+  const { user } = useUser();
 
   async function fetchBooks() {
     try {
@@ -32,8 +35,26 @@ export function BooksProvider({ children }: { children: ReactNode }) {
     }
   }
 
-  async function createBook(data: []) {
+  async function createBook(data: any) {
     try {
+      if (user) {
+        console.log("user.id: ", user?.$id);
+
+        await databases.createDocument({
+          databaseId: DATABASE_ID,
+          collectionId: COLLECTION_ID,
+          documentId: ID.unique(),
+          data: {
+            ...data,
+            userId: user.$id,
+          },
+          permissions: [
+            Permission.read(Role.user(user.$id)),
+            Permission.update(Role.user(user.$id)),
+            Permission.delete(Role.user(user.$id)),
+          ],
+        });
+      }
     } catch (error: any) {
       console.log(error.message);
     }
