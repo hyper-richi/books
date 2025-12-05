@@ -22,6 +22,7 @@ export default function RootLayout() {
 
           <Stack.Screen name="(auth)" options={{ headerShown: false }} />
           <Stack.Screen name="(dashboard)" options={{ headerShown: false, animation: "none" }} />
+          {/* <Stack.Screen name="books/[id]" options={} */}
         </Stack>
       </BooksProvider>
     </UserProvider>

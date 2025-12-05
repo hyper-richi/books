@@ -5,7 +5,6 @@ import { useUser } from "../../hooks/useUser";
 
 export default function AuthLayout() {
    const { user } = useUser();
-   console.log("user: ", user);
   return (
     <GuestOnly>
       <StatusBar />

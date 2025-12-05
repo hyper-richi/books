@@ -12,7 +12,6 @@ import { useUser } from "../../hooks/useUser";
 
 const Login = () => {
   const [email, setEmail] = useState("");
-  console.log("email: ", email);
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
